@@ -5,9 +5,9 @@ const Toggler = () => {
     e.target.textContent = e.target.textContent === 'Off' ? 'On' : 'Off';
   };
   return (
-    <div className="toggler" onClick={handleButton}>
+    <button className="toggler" onClick={handleButton}>
       Off
-    </div>
+    </button>
   );
 };
 
