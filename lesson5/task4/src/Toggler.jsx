@@ -1,14 +1,23 @@
 import React from 'react';
 
 class Toggler extends React.Component {
-  toggleButton = event => {
-    event.target.textContent = event.target.textContent === 'Off' ? 'On' : 'Off';
+  constructor() {
+    super();
+    this.state = {
+      value: 'Off',
+    };
+  }
+
+  toggleButton = () => {
+    this.setState({
+      value: this.state.value === 'Off' ? 'On' : 'Off',
+    });
   };
 
   render() {
     return (
       <button className="toggler" onClick={this.toggleButton}>
-        Off
+        {this.state.value}
       </button>
     );
   }
