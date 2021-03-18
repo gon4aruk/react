@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import User from './user';
+import User from './User';
 
 class UsersList extends Component {
   constructor(props) {
@@ -17,10 +17,15 @@ class UsersList extends Component {
   };
 
   render() {
-    const sortedUsersList =
-      this.state.sorting === 'asc'
-        ? this.props.users.slice().sort((a, b) => a.age - b.age)
-        : this.props.users.slice().sort((a, b) => b.age - a.age);
+    let sortedUsersList;
+    if (this.state.sorting) {
+      sortedUsersList =
+        this.state.sorting === 'asc'
+          ? this.props.users.slice().sort((a, b) => a.age - b.age)
+          : this.props.users.slice().sort((a, b) => b.age - a.age);
+    } else {
+      sortedUsersList = this.props.users;
+    }
 
     return (
       <div>
