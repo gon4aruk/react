@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import Colors from './Colors';
+import Status from './Status';
 
 const rootElement = document.querySelector('#root');
 
-ReactDOM.render(
-  <Colors />,
-  rootElement,
-);
+ReactDOM.render(<Status isOnline={false} />, rootElement);
