@@ -28,12 +28,12 @@ class Dimensions extends Component {
       height: innerHeight,
     });
 
-    document.title = `${innerHeight} x ${innerWidth}`;
+    document.title = `${innerWidth} x ${innerHeight}`;
   };
 
   render() {
     const { width, height } = this.state;
-    return <div className="dimeensions">{`${height}px - ${width}px`}</div>;
+    return <div className="dimeensions">{`${width}px — ${height}px`}</div>;
   }
 }
 
