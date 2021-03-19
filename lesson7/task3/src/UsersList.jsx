@@ -29,8 +29,6 @@ class UsersList extends React.Component {
     const lastCurrentIndex = this.state.itemsPerPage * this.state.currentPage;
     const currentIndex = lastCurrentIndex - this.state.itemsPerPage;
 
-    console.log(currentIndex, lastCurrentIndex);
-
     const usersList = this.props.users.slice(currentIndex, lastCurrentIndex).map((user, index) => {
       return <User key={user.id} name={user.name} age={user.age} />;
     });

@@ -9,7 +9,9 @@ const Pagination = ({ goPrev, goNext, currentPage, totalItems, itemsPerPage }) =
       ←
     </button>
   ) : (
-    <button className="btn" disabled={true}></button>
+    <button className="btn" disabled={true}>
+      ←
+    </button>
   );
 
   const nextButton = isNextPageAviable ? (
