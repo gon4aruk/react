@@ -31,7 +31,7 @@ class UsersList extends React.Component {
 
     const usersList = this.props.users
       .slice(currentIndex, lastCurrentIndex)
-      .map((user) => <User key={user.id} name={user.name} age={user.age} />);
+      .map(user => <User key={user.id} name={user.name} age={user.age} />);
 
     return (
       <div>
