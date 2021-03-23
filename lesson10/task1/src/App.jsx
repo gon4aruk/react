@@ -8,11 +8,12 @@ class Page extends Component {
   };
 
   componentDidMount() {
-    this.fetchUser(this.props.userName);
+    this.fetchUser(this.props.userId);
   }
 
-  fetchUser = userName => {
-    fetch(`https://api.github.com/users/${userName}`)
+  fetchUser = userId => {
+    const userUrl = `https://api.github.com/users/${userId}`;
+    fetch(userUrl)
       .then(response => response.json())
       .then(userData => {
         this.setState({
