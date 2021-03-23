@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import UserMenu from './UserMenu';
 import UserProfile from './UserProfile';
 
-class App extends Component {
+class Page extends Component {
   state = {
     userData: null,
   };
@@ -33,4 +33,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Page;
