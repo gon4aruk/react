@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import UserForm from './UserForm';
+import Calculator from './Calculator';
 
 class App extends Component {
-  createUser = userData => {
-    console.log(userData);
-  };
-
   render() {
-    return <UserForm onSubmit={this.createUser} />;
+    return <Calculator />;
   }
 }
 
