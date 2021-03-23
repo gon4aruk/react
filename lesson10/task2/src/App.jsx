@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Profile from './Profile';
-import ShoppingCard from './ShoppingCard';
+import ShoppingCart from './ShoppingCart';
 
-class App extends Component {
+class Page extends Component {
   state = {
     userData: {
       firstName: 'John',
@@ -28,7 +28,7 @@ class App extends Component {
           {`Hello, ${this.state.userData.firstName} ${this.state.userData.lastName}`}
         </h1>
         <main className="content">
-          <ShoppingCard userName={this.state.userData.firstName} />
+          <ShoppingCart userName={this.state.userData.firstName} />
 
           <Profile handleChange={this.handleChange} userData={this.state.userData} />
         </main>
@@ -37,4 +37,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Page;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CartTitle from './CartTitle';
 import ProductsList from './ProductsList';
 
-class ShoppingCard extends Component {
+class ShoppingCart extends Component {
   state = {
     productsList: [
       {
@@ -28,4 +28,4 @@ class ShoppingCard extends Component {
   }
 }
 
-export default ShoppingCard;
+export default ShoppingCart;
