@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const Expand = ({ title, children, isOpen, onToggle }) => {
   let icon;
@@ -24,18 +23,6 @@ const Expand = ({ title, children, isOpen, onToggle }) => {
       {content}
     </div>
   );
-};
-
-Expand.propTypes = {
-  title: PropTypes.string,
-  children: PropTypes.element.isRequired,
-  isOpen: PropTypes.bool,
-  onToggle: PropTypes.func.isRequired,
-};
-
-Expand.defaultProps = {
-  title: '',
-  isOpen: false,
 };
 
 export default Expand;
