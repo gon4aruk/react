@@ -22,7 +22,6 @@ class Page extends Component {
     return (
       <div className="app">
         <Expand
-          title="Reccomended"
           isOpen={this.state.isOpen}
           onShow={this.showContent}
           onHide={this.hideContent}
