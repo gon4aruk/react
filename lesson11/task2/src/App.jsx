@@ -24,7 +24,7 @@ class Page extends Component {
         <button className="btn" onClick={this.showDialog}>
           Show dialog
         </button>
-        <Dialog title="Recommendation" isOpen={this.state.isOpen} hideDialog={this.hideDialog}>
+        <Dialog title="Recommendation" isOpen={this.state.isOpen} onClose={this.hideDialog}>
           <p>Use immutable array methods to work with data. It will help to avoid bugs</p>
         </Dialog>
       </div>
