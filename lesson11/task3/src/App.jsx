@@ -1,34 +1,37 @@
 import React, { Component } from 'react';
-import UserMenu from './UserMenu';
-import UserProfile from './UserProfile';
+import Expand from './Expand';
 
 class Page extends Component {
   state = {
-    userData: null,
+    isOpen: false,
   };
 
-  componentDidMount() {
-    this.fetchUser(this.props.userId);
-  }
+  showContent = () => {
+    this.setState({
+      isOpen: true,
+    });
+  };
 
-  fetchUser = userId => {
-    const userUrl = `https://api.github.com/users/${userId}`;
-    fetch(userUrl)
-      .then(response => response.json())
-      .then(userData => {
-        this.setState({
-          userData,
-        });
-      });
+  hideContent = () => {
+    this.setState({
+      isOpen: false,
+    });
   };
 
   render() {
     return (
-      <div className="page">
-        <header className="header">
-          <UserMenu userData={this.state.userData} />
-        </header>
-        <UserProfile userData={this.state.userData} />
+      <div className="app">
+        <Expand
+          title="Reccomended"
+          isOpen={this.state.isOpen}
+          onShow={this.showContent}
+          onHide={this.hideContent}
+        >
+          <p>
+            Hooks are a new addition in React 16.8. They let you use state and other React features
+            without writing a class.
+          </p>
+        </Expand>
       </div>
     );
   }
