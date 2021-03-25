@@ -15,7 +15,7 @@ class Page extends Component {
   render() {
     return (
       <div className="app">
-        <Expand isOpen={this.state.isOpen} onToggle={this.toggleButton}>
+        <Expand title="Some title" isOpen={this.state.isOpen} onToggle={this.toggleButton}>
           <p>
             Hooks are a new addition in React 16.8. They let you use state and other React features
             without writing a class.
