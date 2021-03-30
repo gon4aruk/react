@@ -9,8 +9,16 @@ class User extends Component {
     this.fetchUser(this.props.match.params.userId);
   }
 
-  fetchUser = userId => {
-    fetch(`https://api.github.com/users/${userId}`)
+  componentDidUpdate(prevProps) {
+    const prevPropsUserId = prevProps.match.params.userId;
+    const currentPropsUserId = this.props.match.params.userId;
+    if (prevPropsUserId !== currentPropsUserId) {
+      this.fetchUser(this.props.match.params.userId);
+    }
+  }
+
+  fetchUser = async userId => {
+    await fetch(`https://api.github.com/users/${userId}`)
       .then(response => response.json())
       .then(userData => {
         this.setState({ userData });
@@ -20,12 +28,6 @@ class User extends Component {
   render() {
     if (!this.state.userData) {
       return null;
-    }
-
-    const currentUserId = this.state.userData.login;
-    const nextPropsUserId = this.props.match.params.userId;
-    if (currentUserId !== nextPropsUserId) {
-      this.fetchUser(nextPropsUserId);
     }
 
     const { avatar_url, name, location } = this.state.userData;
