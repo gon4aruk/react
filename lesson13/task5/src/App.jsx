@@ -1,28 +1,20 @@
-import React from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
-import Users from './Users';
-import Home from './Home';
+import React, { useState } from 'react';
+import Clock from './Clock';
 
 const Page = () => {
+  const [status, setStatus] = useState(true);
+
   return (
-    <div className="page">
-      <BrowserRouter>
-        <ul className="navigation">
-          <li className="navigation__item">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="navigation__item">
-            <Link to="/users">Users</Link>
-          </li>
-        </ul>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/users">
-          <Users />
-        </Route>
-      </BrowserRouter>
-    </div>
+    <>
+      {status && (
+        <>
+          <Clock location="New York" offset={-5} />
+          <Clock location="Kyiv" offset={2} />
+          <Clock location="London" offset={0} />
+        </>
+      )}
+      <button onClick={() => setStatus(!status)}>Toggle</button>
+    </>
   );
 };
 
