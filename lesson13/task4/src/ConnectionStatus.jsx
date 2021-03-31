@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 const ConnectionStatus = () => {
   const [isOnline, setIsOnline] = useState(true);
 
+  console.log(isOnline);
+
   useEffect(() => {
     const handleOnline = () => {
       setIsOnline(true);
@@ -22,9 +24,9 @@ const ConnectionStatus = () => {
   }, []);
 
   if (isOnline) {
-    return <div className="status">Online</div>;
+    return <div className="status">online</div>;
   }
-  return <div className="status status_offline">Offline</div>;
+  return <div className="status status_offline">offline</div>;
 };
 
 export default ConnectionStatus;
