@@ -1,5 +1,5 @@
 import './index.scss';
-import { store } from './store';
+import store from './store';
 import { addUser, deleteUser } from './users.actions';
 
 console.log(store.getState());
