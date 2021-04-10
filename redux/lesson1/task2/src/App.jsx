@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
-import Clock from './Clock';
+import React, { Component } from 'react';
+import Header from './Header';
+import { UserContext } from './user-context';
 
-const Page = () => {
-  const [status, setStatus] = useState(true);
+class Page extends Component {
+  state = {
+    userData: {
+      name: 'Nikola Tesla',
+      avatar_url: 'https://avatars3.githubusercontent.com/u10001',
+    },
+  };
 
-  return (
-    <>
-      {status && (
-        <>
-          <Clock location="New York" offset={-5} />
-          <Clock location="Kyiv" offset={2} />
-          <Clock location="London" offset={0} />
-        </>
-      )}
-      <button onClick={() => setStatus(!status)}>Toggle</button>
-    </>
-  );
-};
+  render() {
+    return (
+      <UserContext.Provider value={this.state.userData}>
+        <Header />
+      </UserContext.Provider>
+    );
+  }
+}
 
 export default Page;
