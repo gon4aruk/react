@@ -1,25 +1,30 @@
-import { createStore } from 'redux';
+import './index.scss';
+import { store, increment, decrement, reset } from './store';
 
-export const increment = () => {
-  return {
-    type: 'COUNTER/INCREMENT',
-  };
-};
-export const decrement = () => {
-  return {
-    type: 'COUNTER/DECREMENT',
-  };
-};
+const resultElem = document.querySelector('.counter__result');
+const decrementButtom = document.querySelector('[data-action = decrement]');
+const incrementButtom = document.querySelector('[data-action = increment]');
+const resetButtom = document.querySelector('[data-action = reset]');
 
-const counterRuducer = (state = 0, action) => {
-  switch (action.type) {
-    case 'COUNTER/INCREMENT':
-      return state + 1;
-    case 'COUNTER/DECREMENT':
-      return state - 1;
-    default:
-      return state;
-  }
+const onDecrement = () => {
+  store.dispatch(decrement());
 };
 
-export const store = createStore(counterRuducer);
+const onIncrement = () => {
+  store.dispatch(increment());
+};
+
+const onReset = () => {
+  store.dispatch(reset());
+};
+
+store.subscribe(() => {
+  const state = store.getState().history;
+  const currentValue = state.reduce((acc, value) => acc + +value, 0);
+  const history = state.join('');
+  resultElem.textContent = state.length === 0 ? '' : `${history} = ${currentValue}`;
+});
+
+decrementButtom.addEventListener('click', onDecrement);
+incrementButtom.addEventListener('click', onIncrement);
+resetButtom.addEventListener('click', onReset);
