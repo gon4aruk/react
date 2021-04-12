@@ -1,4 +1,4 @@
-import { ADD_USER, DELETE_USER, UPDATE_USER } from './users.actions';
+import { ADD_USER, DELETE_USER } from './users.actions';
 
 const initState = {
   usersList: [],
@@ -12,32 +12,13 @@ export const usersReducer = (state = initState, action) => {
         usersList: state.usersList.concat(action.payload.userData),
       };
     }
-
     case DELETE_USER: {
-      const newUsersList = state.usersList.filter(el => el.id !== action.payload.userId);
+      const newUsersList = state.usersList.filter(user => user.id !== action.payload);
       return {
         ...state,
         usersList: newUsersList,
       };
     }
-
-    case UPDATE_USER: {
-      const newUsersList = state.usersList.map(user => {
-        if (user.id === action.payload.userId) {
-          return {
-            ...user,
-            ...action.payload.userData,
-          };
-        }
-        return user;
-      });
-
-      return {
-        ...state,
-        usersList: newUsersList,
-      };
-    }
-
     default:
       return state;
   }
