@@ -24,7 +24,7 @@ class UsersList extends Component {
           goNext={this.goNext}
           goPrev={this.goPrev}
           currentPage={this.props.users.currentPage + 1}
-          itemPerPage={itemsPerPage}
+          itemsPerPage={itemsPerPage}
           totalItems={this.props.users.usersList.length}
         />
         <ul className="users">

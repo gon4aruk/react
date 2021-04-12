@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Pagination = ({ goNext, goPrev, currentPage, itemPerPage, totalItems }) => {
+const Pagination = ({ goNext, goPrev, currentPage, itemsPerPage, totalItems }) => {
   const prevButton =
     currentPage === 1 ? (
       <button className="btn" disabled={true}></button>
@@ -11,7 +11,7 @@ const Pagination = ({ goNext, goPrev, currentPage, itemPerPage, totalItems }) =>
     );
 
   const nextButton =
-    currentPage === Math.ceil(totalItems / itemPerPage) ? (
+    currentPage === Math.ceil(totalItems / itemsPerPage) ? (
       <button className="btn" disabled={true}></button>
     ) : (
       <button className="btn" onClick={goNext}>
