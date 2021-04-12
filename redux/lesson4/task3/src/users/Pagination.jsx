@@ -1,23 +1,25 @@
 import React from 'react';
 
-const Pagination = ({ goNext, goPrev, currentPage, itemsPerPage, totalItems }) => {
-  const prevButton =
-    currentPage === 1 ? (
-      <button className="btn" disabled={true}></button>
-    ) : (
-      <button className="btn" onClick={goPrev}>
-        ←
-      </button>
-    );
+const Pagination = ({ goPrev, goNext, currentPage, totalItems, itemsPerPage }) => {
+  const isPrevPageAviable = currentPage !== 1 ? true : false;
+  const isNextPageAviable = currentPage !== Math.ceil(totalItems / itemsPerPage) ? true : false;
 
-  const nextButton =
-    currentPage === Math.ceil(totalItems / itemsPerPage) ? (
-      <button className="btn" disabled={true}></button>
-    ) : (
-      <button className="btn" onClick={goNext}>
-        →
-      </button>
-    );
+  const prevButton = isPrevPageAviable ? (
+    <button className="btn" onClick={goPrev}>
+      ←
+    </button>
+  ) : (
+    <button className="btn" disabled={true}></button>
+  );
+
+  const nextButton = isNextPageAviable ? (
+    <button className="btn" onClick={goNext}>
+      →
+    </button>
+  ) : (
+    <button className="btn" disabled={true}></button>
+  );
+
   return (
     <div className="pagination">
       {prevButton}
