@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Pagination = ({ goPrev, goNext, currentPage, totalItems, itemsPerPage }) => {
-  const isPrevPageAviable = currentPage !== 1 ? true : false;
-  const isNextPageAviable = currentPage !== Math.ceil(totalItems / itemsPerPage) ? true : false;
+  const isPrevPageAviable = currentPage !== 0 ? true : false;
+  const isNextPageAviable = currentPage !== Math.ceil(totalItems / itemsPerPage - 1) ? true : false;
 
   const prevButton = isPrevPageAviable ? (
     <button className="btn" onClick={goPrev}>
