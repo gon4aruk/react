@@ -1,8 +1,9 @@
 import React from 'react';
 
 const Pagination = ({ goPrev, goNext, currentPage, totalItems, itemsPerPage }) => {
-  const isPrevPageAviable = currentPage !== 0 ? true : false;
-  const isNextPageAviable = currentPage !== Math.ceil(totalItems / itemsPerPage - 1) ? true : false;
+  const paginationPage = currentPage + 1;
+  const isPrevPageAviable = paginationPage !== 1 ? true : false;
+  const isNextPageAviable = paginationPage !== Math.ceil(totalItems / itemsPerPage) ? true : false;
 
   const prevButton = isPrevPageAviable ? (
     <button className="btn" onClick={goPrev}>
@@ -17,13 +18,13 @@ const Pagination = ({ goPrev, goNext, currentPage, totalItems, itemsPerPage }) =
       →
     </button>
   ) : (
-    <button className="btn" disabled></button>
+    <button className="btn" disabled={true}></button>
   );
 
   return (
     <div className="pagination">
       {prevButton}
-      <span className="pagination__page">{currentPage}</span>
+      <span className="pagination__page">{paginationPage}</span>
       {nextButton}
     </div>
   );
