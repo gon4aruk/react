@@ -1,55 +1,42 @@
-import React, { Component } from 'react';
-import Pagination from './Pagination';
+import React from 'react';
 import User from './User';
+import Filter from '../Filter';
 import { connect } from 'react-redux';
-import * as usersActions from '../users.actions';
+import { filterTextSelector, usersListSelector } from '../users.selectors';
+import { onChangeText } from '../users.actions';
+import PropTypes from 'prop-types';
 
-class UsersList extends Component {
-  goNext = () => {
-    this.props.nextPage();
-  };
-  goPrev = () => {
-    this.props.prevPage();
-  };
-  render() {
-    const { users } = this.props;
-    const itemsPerPage = 3;
+const UsersList = ({ users, filterText, onChangeText }) => {
+  const count = users.length;
+  const usersList = users.map(user => <User key={user.id} name={user.name} age={user.age} />);
 
-    const currentIndex = users.currentPage * itemsPerPage;
-    const lastIndexInCurrentPage = currentIndex + itemsPerPage;
+  return (
+    <div>
+      <Filter
+        filterText={filterText}
+        count={count}
+        onChange={event => onChangeText(event.target.value)}
+      />
+      <ul className="users">{usersList}</ul>
+    </div>
+  );
+};
 
-    return (
-      <div>
-        <Pagination
-          goNext={this.goNext}
-          goPrev={this.goPrev}
-          currentPage={this.props.users.currentPage}
-          itemsPerPage={itemsPerPage}
-          totalItems={this.props.users.usersList.length}
-        />
-        <ul className="users">
-          {users.usersList
-          .slice(currentIndex, lastIndexInCurrentPage)
-          .map(user => (
-            <User key={user.id} name={user.name} age={user.age} />
-          ))}
-        </ul>
-      </div>
-    );
-  }
-}
+UsersList.propTypes = {
+  users: PropTypes.array.isRequired,
+  filterText: PropTypes.string.isRequired,
+  onChangeText: PropTypes.func.isRequired,
+};
 
 const mapState = state => {
   return {
-    users: state,
+    users: usersListSelector(state),
+    filterText: filterTextSelector(state),
   };
 };
 
 const mapDispatch = {
-  nextPage: usersActions.nextPage,
-  prevPage: usersActions.prevPage,
+  onChangeText: onChangeText,
 };
 
-const connector = connect(mapState, mapDispatch);
-
-export default connector(UsersList);
+export default connect(mapState, mapDispatch)(UsersList);

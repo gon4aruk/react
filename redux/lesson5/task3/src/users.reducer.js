@@ -1,4 +1,4 @@
-import { NEXT_PAGE, PREV_PAGE } from './users.actions';
+import { CHANGE_FILTER_TEXT } from './users.actions';
 
 const users = [
   {
@@ -56,35 +56,26 @@ const users = [
     age: 45,
     name: 'Anna',
   },
-  {
-    id: 'id-11',
-    age: 45,
-    name: 'Harry',
-  },
-  {
-    id: 'id-12',
-    age: 45,
-    name: 'Anna',
-  },
 ];
 
 const initState = {
-  usersList: users,
-  currentPage: 0,
+  users: {
+    filterText: '',
+    usersList: users,
+  },
 };
 
 export const usersReducer = (state = initState, action) => {
   switch (action.type) {
-    case NEXT_PAGE:
+    case CHANGE_FILTER_TEXT: {
       return {
         ...state,
-        currentPage: state.currentPage + 1,
+        users: {
+          ...state.users,
+          filterText: action.payload.text,
+        },
       };
-    case PREV_PAGE:
-      return {
-        ...state,
-        currentPage: state.currentPage - 1,
-      };
+    }
     default:
       return state;
   }
