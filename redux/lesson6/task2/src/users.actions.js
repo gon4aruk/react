@@ -1,14 +1,27 @@
-export const NEXT_PAGE = 'USERS/NEXT_PAGE';
-export const PREV_PAGE = 'USERS/PREV_PAGE';
+export const SHOW_SPINNER = 'USERS/SHOW_SPINNER';
+export const USER_DATA_RECEIVED = 'USERS/USER_DATA_RECEIVED';
+import { getUserData } from './users.gateway';
 
-export const nextPage = () => {
+export const showSpinner = () => {
   return {
-    type: NEXT_PAGE,
+    type: SHOW_SPINNER,
   };
 };
 
-export const prevPage = () => {
+export const userDataReceived = userData => {
   return {
-    type: PREV_PAGE,
+    type: USER_DATA_RECEIVED,
+    payload: {
+      userData,
+    },
+  };
+};
+
+export const fetchUserData = userName => {
+  return dispatch => {
+    getUserData(userName).then(userData => {
+      dispatch(showSpinner());
+      dispatch(userDataReceived(userData));
+    });
   };
 };
